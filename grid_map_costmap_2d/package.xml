@@ -10,6 +10,10 @@
   <author email="pfankhauser@ethz.ch">Péter Fankhauser</author>
   <buildtool_depend>catkin</buildtool_depend>
   <depend>grid_map_core</depend>
+  <depend>grid_map_ros</depend>
   <depend>costmap_2d</depend>
   <depend>tf</depend>
+  <export>
+    <costmap_2d plugin="${prefix}/costmap_plugins.xml"/>
+  </export>
 </package>

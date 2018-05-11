@@ -1,0 +1,8 @@
+<class_libraries>
+  <library path="libgrid_map_costmap_layer">
+    <class type="grid_map::GridMapCostmapLayer" base_class_type="costmap_2d::Layer">
+      <description>Integrates grid map as a costmap layer.</description>
+    </class>
+  </library>
+</class_libraries>
+

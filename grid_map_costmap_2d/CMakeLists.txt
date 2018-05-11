@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
   grid_map_core
+  grid_map_ros
   costmap_2d
   tf
 )
@@ -28,6 +29,7 @@ catkin_package(
   LIBRARIES
   CATKIN_DEPENDS
     grid_map_core
+    grid_map_ros
     costmap_2d
     tf
   DEPENDS
@@ -44,6 +46,11 @@ include_directories(
   ${EIGEN3_INCLUDE_DIR}
 )
 
+add_library(grid_map_costmap_layer
+  src/grid_map_costmap_layer.cpp
+)
+target_link_libraries(grid_map_costmap_layer ${catkin_LIBRARIES})
+
 #############
 ## Install ##
 #############
@@ -59,16 +66,16 @@ install(
 ## Testing ##
 #############
 
-if(CATKIN_ENABLE_TESTING)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-  ## Add gtest based cpp test target and link libraries
-  catkin_add_gtest(
-  	${PROJECT_NAME}-test
-  	test/test_grid_map_costmap_2d.cpp
-  	test/Costmap2DConverterTest.cpp
-  )
-  add_subdirectory(rostest)
-endif()
+#if(CATKIN_ENABLE_TESTING)
+#  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+#  ## Add gtest based cpp test target and link libraries
+#  catkin_add_gtest(
+#  	${PROJECT_NAME}-test
+#  	test/test_grid_map_costmap_2d.cpp
+#  	test/Costmap2DConverterTest.cpp
+#  )
+#  add_subdirectory(rostest)
+#endif()
 
 if(TARGET ${PROJECT_NAME}-test)
   target_link_libraries(${PROJECT_NAME}-test ${catkin_LIBRARIES})
